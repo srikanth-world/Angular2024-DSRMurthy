@@ -1,35 +1,20 @@
-Dependency Injection (DI) is a design pattern that allows you to inject dependencies into a class without the class having to explicitly create them. In Angular, DI is used to manage the lifecycle of objects and provide them to other objects.
+Change Detection in Angular
 
-Key Benefits of DI in Angular:
+Angular's change detection mechanism is responsible for keeping the view in sync with the model. It detects changes in data and updates the DOM accordingly.
 
-Testability: Makes testing easier by allowing you to mock dependencies.
-Modularity: Promotes modularity by breaking down components into smaller, reusable parts.
-Maintainability: Makes code more maintainable by reducing coupling between components.
-Flexibility: Allows you to easily change the implementation of a dependency without affecting the consumer.
-How it Works in Angular:
+Key Points:
 
-Provider: Defines how to create an object.
-Injector: Responsible for creating and managing objects.
-Consumer: The class that requires the dependency.
+Default Strategy: Checks all components for changes in every cycle.
+OnPush Strategy: More efficient, checks only when input properties change, child components emit events, or markForCheck() is called.
+Optimizing Change Detection:
+Use OnPush strategy judiciously.
+Minimize unnecessary changes to component properties.
+Use immutable data structures.
+Leverage RxJS operators for efficient data streams.
+By understanding and optimizing change detection, you can build high-performance Angular applications.
 
-// HeroService.ts
-@Injectable({
-  providedIn: 'root'
-})
-export class HeroService {
-  getHero() {
-    // ...
-  }
-}
 
-// HeroComponent.ts
-@Component({
-  // ...
-})
-export class HeroComponent {
-  constructor(private heroService: HeroService) {}
 
-  ngOnInit() {
-    this.hero = this.heroService.getHero();
-  }
-}
+
+
+
