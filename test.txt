@@ -1,1 +1,35 @@
-test file
+Dependency Injection (DI) is a design pattern that allows you to inject dependencies into a class without the class having to explicitly create them. In Angular, DI is used to manage the lifecycle of objects and provide them to other objects.
+
+Key Benefits of DI in Angular:
+
+Testability: Makes testing easier by allowing you to mock dependencies.
+Modularity: Promotes modularity by breaking down components into smaller, reusable parts.
+Maintainability: Makes code more maintainable by reducing coupling between components.
+Flexibility: Allows you to easily change the implementation of a dependency without affecting the consumer.
+How it Works in Angular:
+
+Provider: Defines how to create an object.
+Injector: Responsible for creating and managing objects.
+Consumer: The class that requires the dependency.
+
+// HeroService.ts
+@Injectable({
+  providedIn: 'root'
+})
+export class HeroService {
+  getHero() {
+    // ...
+  }
+}
+
+// HeroComponent.ts
+@Component({
+  // ...
+})
+export class HeroComponent {
+  constructor(private heroService: HeroService) {}
+
+  ngOnInit() {
+    this.hero = this.heroService.getHero();
+  }
+}
